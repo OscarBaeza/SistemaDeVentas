@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace SistemaDeVentas
 {
-    public partial class Form1 : Form
+    public partial class Menú : Form
     {
-        public Form1()
+        public Menú()
         {
             InitializeComponent();
-        }
-
-        //Primer commit
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
