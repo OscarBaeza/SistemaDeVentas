@@ -16,5 +16,10 @@ namespace SistemaDeVentas
         {
             InitializeComponent();
         }
+        //Segundo commit
+        private void Menú_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
