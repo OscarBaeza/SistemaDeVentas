@@ -17,6 +17,7 @@ namespace SistemaDeVentas
             InitializeComponent();
         }
         // Hola amixes
+        //Hola mundo
         private void Menú_Load(object sender, EventArgs e)
         {
 
