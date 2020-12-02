@@ -81,5 +81,7 @@ namespace SistemaDeVentas.mysql
             int eliminado = comando.ExecuteNonQuery();
             return eliminado;
         }
+
+
     }
 }
