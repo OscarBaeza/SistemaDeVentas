@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace SistemaDeVentas.DAOS
 {
-    class ProductoDAO
+    public class ProductoDAO
     {
-        public class ProductoDAO
-        {
+        
             public int codigo { get; set; }
             public string nombre { get; set; }
             public string descripcion { get; set; }
@@ -25,8 +24,8 @@ namespace SistemaDeVentas.DAOS
             {
                 this.nombre = nombre;
                 this.descripcion = descripcion;
+                this.almacen = almacen;
                 this.precio = precio;
-                this.cantidad = cantidad;
             }
 
             public ProductoDAO(int codigo, string nombre, string descripcion, int almacen, double precio)
@@ -34,9 +33,9 @@ namespace SistemaDeVentas.DAOS
                 this.codigo = codigo;
                 this.nombre = nombre;
                 this.descripcion = descripcion;
+                this.almacen = almacen;
                 this.precio = precio;
-                this.cantidad = cantidad;
             }
         }
-    }
+    
 }

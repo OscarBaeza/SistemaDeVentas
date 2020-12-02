@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using SistemaDeVentas.DAOS;
 
 namespace SistemaDeVentas.mysql
 {
@@ -16,7 +17,7 @@ namespace SistemaDeVentas.mysql
             int retorno = 0;
             //Utilizamos el siguiente comando SQL para agregarlo a la base de datos
             MySqlCommand comando = new MySqlCommand(String.Format("INSERT INTO PRODUCTOS(NOMBRE, DESCRIPCION, " +
-                "ALMACEN, PRECIO)values('{0}','{1}','{2}','{3}')", add.nombre, add.descripcion, add.precio, add.cantidad), Conexion.obtenerConexion());
+                "ALMACEN, PRECIO)values('{0}','{1}','{2}','{3}')", add, add.descripcion, add.precio, add.cantidad), Conexion.obtenerConexion());
             retorno = comando.ExecuteNonQuery();
             return retorno;
         }
