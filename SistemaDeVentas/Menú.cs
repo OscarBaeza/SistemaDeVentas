@@ -16,5 +16,14 @@ namespace SistemaDeVentas
         {
             InitializeComponent();
         }
+        //Sexto commit
+        //Quinto commit
+        //Cuarto commit
+        //Tercer commit
+        //Segundo commit
+        private void Menú_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
