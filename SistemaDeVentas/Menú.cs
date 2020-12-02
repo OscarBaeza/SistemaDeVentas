@@ -16,6 +16,7 @@ namespace SistemaDeVentas
         {
             InitializeComponent();
         }
+        //Sexto commit
         //Quinto commit
         //Cuarto commit
         //Tercer commit
