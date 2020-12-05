@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaDeVentas.mysql;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,11 @@ namespace SistemaDeVentas.Ventanas
         public Empleados()
         {
             InitializeComponent();
+        }
+
+        private void Empleados_Load(object sender, EventArgs e)
+        {
+            dtgvEmpleados.DataSource = Funciones.mostrarEmpleado();
         }
     }
 }
