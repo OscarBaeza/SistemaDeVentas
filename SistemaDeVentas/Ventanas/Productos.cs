@@ -83,12 +83,148 @@ namespace SistemaDeVentas.Ventanas
                     agregar.descripcion = txtDescripcion.Text;
                 }
                 agregar.almacen = Convert.ToInt32(txtAlmacen.Text);
+                agregar.precio = Convert.ToDouble(txtPrecio.Text);
+
+                //Variable retorno nos indicara si se agrego correctamente a la base de datos
+                int retorno = Funciones.AgregarProducto(agregar);
+
+                if (retorno > 0)
+                {
+                    //Si se agrego a la base de datos nos mandara un mensaje y despues se limpiaran los campos usados
+                    MessageBox.Show("Producto agregado con éxito");
+                    dtgvProductos.DataSource = Funciones.mostrarProducto();
+                    txtNombreProducto.Clear();
+                    txtAlmacen.Clear();
+                    txtPrecio.Clear();
+                    txtDescripcion.Clear();
+                    
+                }
+                else
+                {
+                    //Si no se agrego mandara un mensaje 
+                    MessageBox.Show("No se agregó el producto, verifique los datos");
+                }
             }
             else {
                 MessageBox.Show("Verifique los siguientes campos:\n " + errores);
             }
 
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            //Para buscar un producto primero tenemos que llenar el campo correspondiente de la caja de texto
+            if (String.IsNullOrWhiteSpace(txtBuscar.Text))
+            {
+                //Si damos click y la caja de texto está vacia, mandará el siguiente mensaje
+                MessageBox.Show("Ingresa un código para buscar");
+            }
+            else {
+                //Creamos un Producto DAO que nos servirá para mostrarle al usuario lo que solicito
+                ProductoDAO c = new ProductoDAO();
+                c = Funciones.BuscarProducto(txtBuscar.Text);
+                if (c != null)
+                {
+                    //En caso de que el código sea igual a 0 o que no este, significa que no existe ningun producto
+                    //En caso contrario mostrara los datos correspondientes
+                    if (c.codigo != 0)
+                    {
+                        MessageBox.Show("Código: " + c.codigo + "\n" +
+                                    "Nombre: " + c.nombre + "\n" +
+                                    "Descripción: " + c.descripcion + "\n" +
+                                    "Precio: " + c.precio + "\n" +
+                                    "Cantidad: " + c.almacen + "\n");
+                        txtBuscar.Clear();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El producto no existe");
+                        txtBuscar.Clear();
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("El producto no existe");
+                    txtBuscar.Clear();
+                }
+            }
+        }
+
+        private void btnEditarProducto_Click(object sender, EventArgs e)
+        {
+            //Para editar primero tenemos que seleccionar un producto de la tabla
+            if (dtgvProductos.SelectedRows.Count == 1)
+            {
+                //Guardamos el Codigo en la variable id para asi identificar el producto en la base de datos
+                //Obtenemos los nuevos datos a modificar y se realiza el cambio.
+              
+                int id = Convert.ToInt32(dtgvProductos.CurrentRow.Cells[0].Value);
+                String nombre = txtNombreProducto.Text;
+                String descripcion = txtDescripcion.Text;
+                int almacen = Convert.ToInt32(txtAlmacen.Text);
+                double precio = Convert.ToDouble(txtPrecio.Text);
+
+                //Si el producto se edita, nos mostrara un mensaje y de la misma manera en caso de que no.
+                if (Funciones.EditarProducto(id, nombre, descripcion, almacen, precio) > 0)
+                {
+                    MessageBox.Show("Producto editado con éxito");
+                    dtgvProductos.DataSource = Funciones.mostrarProducto();
+                    txtNombreProducto.Clear();
+                    txtDescripcion.Clear();
+                    txtAlmacen.Clear();
+                    txtPrecio.Clear();
+                    btnAgregarProducto.Enabled = true;
+                }
+                else
+                {
+                    MessageBox.Show("Ocurrio un error y no se edito el producto");
+                }
+
+            
+            }
+            else
+            {
+                MessageBox.Show("Primero debes seleccionar un producto");
+            }
+        }
+
+        private void MostarDatos(object sender, DataGridViewCellEventArgs e)
+        {
+            btnAgregarProducto.Enabled = false;
+            txtNombreProducto.Text = Convert.ToString(dtgvProductos.CurrentRow.Cells[1].Value);
+            txtDescripcion.Text = Convert.ToString(dtgvProductos.CurrentRow.Cells[2].Value);
+            txtPrecio.Text = Convert.ToString(dtgvProductos.CurrentRow.Cells[3].Value);
+            txtAlmacen.Text = Convert.ToString(dtgvProductos.CurrentRow.Cells[4].Value);
+        }
+
+        private void btnEliminarProducto_Click(object sender, EventArgs e)
+        {
+            if (dtgvProductos.SelectedRows.Count == 1)
+            {
+                //Guardamos el Codigo del producto en la variable id para localizarlo en la base de datos.
+                int id = Convert.ToInt32(dtgvProductos.CurrentRow.Cells[0].Value);
+                //si se elimina nos mostrara un mensaje y de igual manera en caso de que no
+                if (Funciones.EliminarProducto(id) > 0)
+                {
+                    MessageBox.Show("Producto eliminado con éxito");
+                    txtNombreProducto.Clear();
+                    txtDescripcion.Clear();
+                    txtAlmacen.Clear();
+                    txtPrecio.Clear();
+                    dtgvProductos.DataSource = Funciones.mostrarProducto();
+                }
+                else
+                {
+                    MessageBox.Show("Ocurrio un error y no se elimino el producto");
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Primero debes seleccionar un producto");
+            }
         }
     }
 }
