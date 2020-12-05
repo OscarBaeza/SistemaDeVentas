@@ -15,12 +15,12 @@ namespace SistemaDeVentas.DAOS
         public String ApellidoMaterno { get; set; }
         public String Email { get; set; }
         public String password { get; set; }
-        public Boolean Encargado { get; set; }
+        public int Encargado { get; set; }
         public String Date { get; set; }
         public String Direccion { get; set; }
         public String Telefono { get; set; }
 
-        public EmpleadosDAO(String Nombre, String ApellidoPaterno, String ApellidoMaterno, String Email, String password, Boolean Encargado, String Date, String Direccion, String Telefono)
+        public EmpleadosDAO(String Nombre, String ApellidoPaterno, String ApellidoMaterno, String Email, String password, int Encargado, String Date, String Direccion, String Telefono)
         {
             this.Nombre = Nombre;
             this.ApellidoPaterno = ApellidoPaterno;
@@ -34,7 +34,7 @@ namespace SistemaDeVentas.DAOS
 
         }
 
-        public EmpleadosDAO(int IdEmpleado, String Nombre, String ApellidoPaterno, String ApellidoMaterno, String Email, String password, Boolean Encargado, String Date, String Direccion, String Telefono)
+        public EmpleadosDAO(int IdEmpleado, String Nombre, String ApellidoPaterno, String ApellidoMaterno, String Email, String password, int Encargado, String Date, String Direccion, String Telefono)
         {
             this.IdEmpleado = IdEmpleado;
             this.Nombre = Nombre;
