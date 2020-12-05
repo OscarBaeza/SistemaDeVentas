@@ -42,11 +42,11 @@ namespace SistemaDeVentas.Ventanas
             this.txtNombreProducto = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvProductos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -55,13 +55,17 @@ namespace SistemaDeVentas.Ventanas
             // 
             // dtgvProductos
             // 
+            this.dtgvProductos.AllowUserToAddRows = false;
+            this.dtgvProductos.AllowUserToDeleteRows = false;
             this.dtgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvProductos.Location = new System.Drawing.Point(27, 78);
             this.dtgvProductos.Name = "dtgvProductos";
+            this.dtgvProductos.ReadOnly = true;
             this.dtgvProductos.RowHeadersWidth = 62;
             this.dtgvProductos.RowTemplate.Height = 28;
             this.dtgvProductos.Size = new System.Drawing.Size(844, 303);
             this.dtgvProductos.TabIndex = 0;
+            this.dtgvProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MostarDatos);
             // 
             // btnAgregarProducto
             // 
@@ -81,6 +85,7 @@ namespace SistemaDeVentas.Ventanas
             this.btnEditarProducto.TabIndex = 9;
             this.btnEditarProducto.Text = "Editar";
             this.btnEditarProducto.UseVisualStyleBackColor = true;
+            this.btnEditarProducto.Click += new System.EventHandler(this.btnEditarProducto_Click);
             // 
             // btnEliminarProducto
             // 
@@ -90,6 +95,7 @@ namespace SistemaDeVentas.Ventanas
             this.btnEliminarProducto.TabIndex = 10;
             this.btnEliminarProducto.Text = "Eliminar";
             this.btnEliminarProducto.UseVisualStyleBackColor = true;
+            this.btnEliminarProducto.Click += new System.EventHandler(this.btnEliminarProducto_Click);
             // 
             // txtBuscar
             // 
@@ -173,6 +179,22 @@ namespace SistemaDeVentas.Ventanas
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del producto";
             // 
+            // txtPrecio
+            // 
+            this.txtPrecio.Location = new System.Drawing.Point(18, 208);
+            this.txtPrecio.Name = "txtPrecio";
+            this.txtPrecio.Size = new System.Drawing.Size(152, 26);
+            this.txtPrecio.TabIndex = 9;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(14, 184);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 20);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Precio:*";
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.button1);
@@ -186,6 +208,16 @@ namespace SistemaDeVentas.Ventanas
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Acciones";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(16, 106);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(97, 30);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Buscar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.dtgvProductos);
@@ -197,31 +229,6 @@ namespace SistemaDeVentas.Ventanas
             this.groupBox3.TabIndex = 15;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Registros";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(16, 106);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(97, 30);
-            this.button1.TabIndex = 11;
-            this.button1.Text = "Buscar";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 184);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 20);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Precio:*";
-            // 
-            // txtPrecio
-            // 
-            this.txtPrecio.Location = new System.Drawing.Point(18, 208);
-            this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(152, 26);
-            this.txtPrecio.TabIndex = 9;
             // 
             // Productos
             // 
