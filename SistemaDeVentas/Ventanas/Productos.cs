@@ -19,6 +19,7 @@ namespace SistemaDeVentas.Ventanas
         public Productos()
         {
             InitializeComponent();
+            this.CenterToScreen();
         }
 
         private void Productos_Load(object sender, EventArgs e)
@@ -195,8 +196,9 @@ namespace SistemaDeVentas.Ventanas
             btnAgregarProducto.Enabled = false;
             txtNombreProducto.Text = Convert.ToString(dtgvProductos.CurrentRow.Cells[1].Value);
             txtDescripcion.Text = Convert.ToString(dtgvProductos.CurrentRow.Cells[2].Value);
-            txtPrecio.Text = Convert.ToString(dtgvProductos.CurrentRow.Cells[3].Value);
-            txtAlmacen.Text = Convert.ToString(dtgvProductos.CurrentRow.Cells[4].Value);
+            txtAlmacen.Text = Convert.ToString(dtgvProductos.CurrentRow.Cells[3].Value);
+            txtPrecio.Text = Convert.ToString(dtgvProductos.CurrentRow.Cells[4].Value);
+            
         }
 
         private void btnEliminarProducto_Click(object sender, EventArgs e)
