@@ -105,10 +105,9 @@ namespace SistemaDeVentas.mysql
             MySqlCommand comando = new MySqlCommand(String.Format("SELECT * FROM EMPLEADOS"), Conexion.obtenerConexion());
             MySqlDataReader reader = comando.ExecuteReader();
             //Con esté ciclo estaremos creando objetos para despues agregarlos a la lista y mostrarlos
-            EmpleadosDAO c = new EmpleadosDAO();
             while (reader.Read())
             {
-
+                EmpleadosDAO c = new EmpleadosDAO();
                 c.IdEmpleado = reader.GetInt32(0);
                 c.Nombre = reader.GetString(1);
                 c.ApellidoPaterno = reader.GetString(2);
@@ -137,11 +136,12 @@ namespace SistemaDeVentas.mysql
                 c.Nombre = reader.GetString(1);
                 c.ApellidoPaterno = reader.GetString(2);
                 c.ApellidoMaterno = reader.GetString(3);
-                c.password = reader.GetString(4);
-                c.Encargado = reader.GetInt32(5);
-                c.Date = reader.GetString(6);
-                c.Direccion = reader.GetString(7);
-                c.Telefono = reader.GetString(8);
+                c.Email = reader.GetString(4);
+                c.password = reader.GetString(5);
+                c.Encargado = reader.GetInt32(6);
+                c.Date = reader.GetString(7);
+                c.Direccion = reader.GetString(8);
+                c.Telefono = reader.GetString(9);
             }
             return c;
         }
@@ -149,8 +149,8 @@ namespace SistemaDeVentas.mysql
         public static int EditarEmpleados(int IdEmpleado, String Nombre, String ApellidoPaterno, String ApellidoMaterno, String Email, String password, int Encargado, String Date, String Direccion, String Telefono)
         {
             //Comando SQL que editara los datos que le mandemos al registro de la base de datos
-            MySqlCommand comando = new MySqlCommand(String.Format("UPDATE EMPLEADOS SET NOMBRE='{0}', APELLIDOPATERNO='{1}', APELLIDOMATERNO='{2}', EMAIL='{3}',PASSWORD='{4}',ENCARGADO='{5}',FECHANACIMIENTO='{6}',DIRECCION='{7}',TELEFONO='{8}' WHERE IDEMPLEADO='{9}';", 
-                Nombre, ApellidoPaterno, ApellidoMaterno, Email, password, Encargado, Date, Direccion, Telefono, IdEmpleado), Conexion.obtenerConexion());
+            MySqlCommand comando = new MySqlCommand(String.Format("UPDATE EMPLEADOS SET NOMBRE='{0}', APELLIDOPATERNO='{1}', APELLIDOMATERNO='{2}', EMAIL='{3}',PASSWORD='{4}',ENCARGADO='{5}',DIRECCION='{6}',TELEFONO='{7}' WHERE IDEMPLEADO='{8}';", 
+                Nombre, ApellidoPaterno, ApellidoMaterno, Email, password, Encargado, Direccion, Telefono, IdEmpleado), Conexion.obtenerConexion());
             //La variable editado será retornada y nos ayudará a saber si se actualizarón los datos de la base de datos
             int editado = comando.ExecuteNonQuery();
             return editado;

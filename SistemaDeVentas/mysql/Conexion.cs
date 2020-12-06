@@ -14,7 +14,7 @@ namespace SistemaDeVentas.mysql
         public static MySqlConnection obtenerConexion()
         {
             //Comando SQL que sera la conexion a la base de datos.
-            MySqlConnection conexion = new MySqlConnection("server=127.0.0.1;database=sistemaventas;Uid=root;pwd=root;");
+            MySqlConnection conexion = new MySqlConnection("server=localhost;database=sistemaventas;Uid=root;pwd=root;");
             conexion.Open();
             //Retorno de la conexion
             return conexion;
