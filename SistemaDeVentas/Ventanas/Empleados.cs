@@ -276,7 +276,7 @@ namespace SistemaDeVentas.Ventanas
                 }
                 else
                 {
-                    //Cambios
+                    //Cambioss
                     MessageBox.Show("El empleado no existe");
                     txtBuscar.Clear();
                 }
