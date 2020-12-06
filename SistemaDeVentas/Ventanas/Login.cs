@@ -16,5 +16,15 @@ namespace SistemaDeVentas.Ventanas
         {
             InitializeComponent();
         }
+
+        private void btnregistro_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnentrar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -79,7 +79,7 @@ namespace SistemaDeVentas.Ventanas
             // 
             // btnEditarProducto
             // 
-            this.btnEditarProducto.Location = new System.Drawing.Point(140, 47);
+            this.btnEditarProducto.Location = new System.Drawing.Point(16, 100);
             this.btnEditarProducto.Name = "btnEditarProducto";
             this.btnEditarProducto.Size = new System.Drawing.Size(97, 32);
             this.btnEditarProducto.TabIndex = 9;
@@ -99,7 +99,7 @@ namespace SistemaDeVentas.Ventanas
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(95, 46);
+            this.txtBuscar.Location = new System.Drawing.Point(142, 49);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(186, 26);
             this.txtBuscar.TabIndex = 11;
@@ -109,9 +109,9 @@ namespace SistemaDeVentas.Ventanas
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(26, 52);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 20);
+            this.label2.Size = new System.Drawing.Size(119, 20);
             this.label2.TabIndex = 12;
-            this.label2.Text = "Buscar:";
+            this.label2.Text = "Id del producto:";
             // 
             // txtDescripcion
             // 
@@ -197,7 +197,6 @@ namespace SistemaDeVentas.Ventanas
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.btnEliminarProducto);
             this.groupBox2.Controls.Add(this.btnAgregarProducto);
             this.groupBox2.Controls.Add(this.btnEditarProducto);
@@ -210,7 +209,7 @@ namespace SistemaDeVentas.Ventanas
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(16, 106);
+            this.button1.Location = new System.Drawing.Point(334, 47);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(97, 30);
             this.button1.TabIndex = 11;
@@ -220,6 +219,7 @@ namespace SistemaDeVentas.Ventanas
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Controls.Add(this.dtgvProductos);
             this.groupBox3.Controls.Add(this.txtBuscar);
             this.groupBox3.Controls.Add(this.label2);

@@ -11,15 +11,15 @@ using System.Windows.Forms;
 
 namespace SistemaDeVentas.Ventanas
 {
-    public partial class Empleados : Form
+    public partial class Clientes : Form
     {
-        public Empleados()
+        public Clientes()
         {
             InitializeComponent();
-            dtgvEmpleados.DataSource = Funciones.mostrarEmpleado();
+            dtgvClientes.DataSource = Funciones.mostrarCliente();
         }
 
-        private void Empleados_Load(object sender, EventArgs e)
+        private void textBox2_TextChanged(object sender, EventArgs e)
         {
 
         }
