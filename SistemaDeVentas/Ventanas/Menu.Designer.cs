@@ -29,34 +29,82 @@ namespace SistemaDeVentas.Ventanas
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbEncargado = new System.Windows.Forms.Label();
+            this.btnEmpleados = new System.Windows.Forms.Button();
+            this.btnProductos = new System.Windows.Forms.Button();
+            this.btnClientes = new System.Windows.Forms.Button();
+            this.btnVentas = new System.Windows.Forms.Button();
+            this.btnReportes = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lbEncargado
+            // btnEmpleados
             // 
-            this.lbEncargado.AutoSize = true;
-            this.lbEncargado.Location = new System.Drawing.Point(290, 120);
-            this.lbEncargado.Name = "lbEncargado";
-            this.lbEncargado.Size = new System.Drawing.Size(51, 20);
-            this.lbEncargado.TabIndex = 0;
-            this.lbEncargado.Text = "label1";
+            this.btnEmpleados.Location = new System.Drawing.Point(50, 50);
+            this.btnEmpleados.Name = "btnEmpleados";
+            this.btnEmpleados.Size = new System.Drawing.Size(127, 52);
+            this.btnEmpleados.TabIndex = 0;
+            this.btnEmpleados.Text = "Empleados";
+            this.btnEmpleados.UseVisualStyleBackColor = true;
+            this.btnEmpleados.Click += new System.EventHandler(this.btnEmpleados_Click);
+            // 
+            // btnProductos
+            // 
+            this.btnProductos.Location = new System.Drawing.Point(50, 143);
+            this.btnProductos.Name = "btnProductos";
+            this.btnProductos.Size = new System.Drawing.Size(127, 52);
+            this.btnProductos.TabIndex = 1;
+            this.btnProductos.Text = "Productos";
+            this.btnProductos.UseVisualStyleBackColor = true;
+            // 
+            // btnClientes
+            // 
+            this.btnClientes.Location = new System.Drawing.Point(50, 239);
+            this.btnClientes.Name = "btnClientes";
+            this.btnClientes.Size = new System.Drawing.Size(127, 52);
+            this.btnClientes.TabIndex = 2;
+            this.btnClientes.Text = "Clientes";
+            this.btnClientes.UseVisualStyleBackColor = true;
+            // 
+            // btnVentas
+            // 
+            this.btnVentas.Location = new System.Drawing.Point(217, 50);
+            this.btnVentas.Name = "btnVentas";
+            this.btnVentas.Size = new System.Drawing.Size(127, 52);
+            this.btnVentas.TabIndex = 3;
+            this.btnVentas.Text = "Ventas";
+            this.btnVentas.UseVisualStyleBackColor = true;
+            // 
+            // btnReportes
+            // 
+            this.btnReportes.Location = new System.Drawing.Point(217, 143);
+            this.btnReportes.Name = "btnReportes";
+            this.btnReportes.Size = new System.Drawing.Size(127, 52);
+            this.btnReportes.TabIndex = 4;
+            this.btnReportes.Text = "Reportes";
+            this.btnReportes.UseVisualStyleBackColor = true;
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lbEncargado);
+            this.ClientSize = new System.Drawing.Size(415, 428);
+            this.Controls.Add(this.btnReportes);
+            this.Controls.Add(this.btnVentas);
+            this.Controls.Add(this.btnClientes);
+            this.Controls.Add(this.btnProductos);
+            this.Controls.Add(this.btnEmpleados);
             this.Name = "Menu";
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label lbEncargado;
+        private System.Windows.Forms.Button btnEmpleados;
+        private System.Windows.Forms.Button btnProductos;
+        private System.Windows.Forms.Button btnClientes;
+        private System.Windows.Forms.Button btnVentas;
+        private System.Windows.Forms.Button btnReportes;
     }
 }
