@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SistemaDeVentas.DAOS;
+using SistemaDeVentas.mysql;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +17,37 @@ namespace SistemaDeVentas.Ventanas
         public Ventas()
         {
             InitializeComponent();
+            
+            List<ProductoDAO> lista = new List<ProductoDAO>();
+            lista = Funciones.mostrarProducto();
+
+            List<String> listaProductos = new List<String>();
+            listaProductos.Add("Selecciona el producto");
+            for (int i=0;i<lista.Count;i++) {
+                listaProductos.Add(lista[i].nombre);
+            }
+
+            comboProductos.DataSource = listaProductos;
+
+           
+        }
+        List<ProductoDAO> listaVentas = new List<ProductoDAO>();
+
+        private void Ventas_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+           
+            dataGridView1.DataSource = Funciones.mostrarProductoS("Pantalon");
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

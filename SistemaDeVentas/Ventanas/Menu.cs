@@ -16,12 +16,25 @@ namespace SistemaDeVentas.Ventanas
         {
             InitializeComponent();
             String encargado = n;
-            lbEncargado.Text = n;
+            if (!n.Equals("True")) {
+                btnClientes.Enabled = false;
+                btnEmpleados.Enabled = false;
+                btnProductos.Enabled = false;
+                btnReportes.Enabled = false;
+            }
+            
         }
 
         private void Menu_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnEmpleados_Click(object sender, EventArgs e)
+        {
+            Empleados fm = new Empleados();
+            this.Hide();
+            fm.Show();
         }
     }
 }
