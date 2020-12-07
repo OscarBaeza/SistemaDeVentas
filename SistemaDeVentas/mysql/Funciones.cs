@@ -187,10 +187,10 @@ namespace SistemaDeVentas.mysql
             MySqlCommand comando = new MySqlCommand(String.Format("SELECT * FROM CLIENTES"), Conexion.obtenerConexion());
             MySqlDataReader reader = comando.ExecuteReader();
             //Con esté ciclo estaremos creando objetos para despues agregarlos a la lista y mostrarlos
-            ClienteDAO c = new ClienteDAO();
+            
             while (reader.Read())
             {
-
+                ClienteDAO c = new ClienteDAO();
                 c.IdCliente = reader.GetInt32(0);
                 c.Nombre = reader.GetString(1);
                 c.ApellidoPaterno = reader.GetString(2);
