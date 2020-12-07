@@ -166,6 +166,7 @@ namespace SistemaDeVentas.Ventanas
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Login";
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
