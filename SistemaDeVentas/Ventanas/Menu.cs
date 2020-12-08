@@ -36,5 +36,34 @@ namespace SistemaDeVentas.Ventanas
             this.Hide();
             fm.Show();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Login log = new Login();
+            log.Show();
+            this.Hide();
+        }
+
+        private void btnVentas_Click(object sender, EventArgs e)
+        {
+            Ventas ven = new Ventas();
+            ven.Show();
+            this.Hide();
+
+        }
+
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+            Productos prod = new Productos();
+            prod.Show();
+            this.Hide();
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            Clientes cl = new Clientes();
+            cl.Show();
+            this.Hide();
+        }
     }
 }

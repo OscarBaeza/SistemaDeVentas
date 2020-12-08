@@ -228,5 +228,12 @@ namespace SistemaDeVentas.Ventanas
                 MessageBox.Show("Primero debes seleccionar un producto");
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Login log = new Login();
+            log.Show();
+            this.Hide();
+        }
     }
 }

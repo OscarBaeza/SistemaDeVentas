@@ -296,5 +296,12 @@ namespace SistemaDeVentas.Ventanas
             txtDireccion.Text = Convert.ToString(dtgvEmpleados.CurrentRow.Cells[8].Value);
             txtTelefono.Text = Convert.ToString(dtgvEmpleados.CurrentRow.Cells[9].Value);
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Login log = new Login();
+            log.Show();
+            this.Hide();
+        }
     }
 }
