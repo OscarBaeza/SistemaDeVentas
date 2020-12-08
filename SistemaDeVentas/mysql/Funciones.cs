@@ -41,6 +41,25 @@ namespace SistemaDeVentas.mysql
                 lista.Add(c);
             }
             return lista;
+        }public static List<ProductoDAO> mostrarProductoVenta(String NOMBRE)
+        {
+            //Esté metodo nos regresa una lista con los datos que mostraremos 
+            List<ProductoDAO> lista = new List<ProductoDAO>();
+            //Esté será el comando que utilizaremos para obtener los datos
+            MySqlCommand comando = new MySqlCommand(String.Format("SELECT * FROM PRODUCTOS WHERE NOMBRE = "+NOMBRE), Conexion.obtenerConexion());
+            MySqlDataReader reader = comando.ExecuteReader();
+            //Con esté ciclo estaremos creando objetos para despues agregarlos a la lista y mostrarlos
+            while (reader.Read())
+            {
+                ProductoDAO c = new ProductoDAO();
+                c.codigo = reader.GetInt32(0);
+                c.nombre = reader.GetString(1);
+                c.descripcion = reader.GetString(2);
+                c.almacen = reader.GetInt32(3);
+                c.precio = reader.GetDouble(4);
+                lista.Add(c);
+            }
+            return lista;
         }
 
         public static ProductoDAO BuscarProducto(string codigo)

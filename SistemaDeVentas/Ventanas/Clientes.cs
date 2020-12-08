@@ -250,5 +250,12 @@ namespace SistemaDeVentas.Ventanas
             txtEmail.Text = Convert.ToString(dtgvClientes.CurrentRow.Cells[5].Value);
             txtTelefono.Text = Convert.ToString(dtgvClientes.CurrentRow.Cells[6].Value);
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Login log = new Login();
+            log.Show();
+            this.Hide();
+        }
     }
 }

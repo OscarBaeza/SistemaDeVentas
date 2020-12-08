@@ -46,8 +46,10 @@ namespace SistemaDeVentas.Ventanas
                     MessageBox.Show("Bienvenido " + usuario);
                     
                     Menu fm = new Menu(encargado);
-                    this.Hide();
                     fm.Show();
+                    Login log = new Login();
+                    log.Close();
+                    
                 }
                 else
                 {
@@ -68,7 +70,9 @@ namespace SistemaDeVentas.Ventanas
 
         private void btnregistro_Click(object sender, EventArgs e)
         {
-
+            Registro res = new Registro();
+            res.Show();
+            this.Hide();
         }
 
         private void btnentrar_Click(object sender, EventArgs e)

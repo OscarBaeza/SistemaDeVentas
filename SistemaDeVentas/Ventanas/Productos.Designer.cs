@@ -47,6 +47,7 @@ namespace SistemaDeVentas.Ventanas
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvProductos)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -58,20 +59,22 @@ namespace SistemaDeVentas.Ventanas
             this.dtgvProductos.AllowUserToAddRows = false;
             this.dtgvProductos.AllowUserToDeleteRows = false;
             this.dtgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvProductos.Location = new System.Drawing.Point(27, 78);
+            this.dtgvProductos.Location = new System.Drawing.Point(24, 62);
+            this.dtgvProductos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtgvProductos.Name = "dtgvProductos";
             this.dtgvProductos.ReadOnly = true;
             this.dtgvProductos.RowHeadersWidth = 62;
             this.dtgvProductos.RowTemplate.Height = 28;
-            this.dtgvProductos.Size = new System.Drawing.Size(844, 303);
+            this.dtgvProductos.Size = new System.Drawing.Size(750, 242);
             this.dtgvProductos.TabIndex = 0;
             this.dtgvProductos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.MostarDatos);
             // 
             // btnAgregarProducto
             // 
-            this.btnAgregarProducto.Location = new System.Drawing.Point(16, 47);
+            this.btnAgregarProducto.Location = new System.Drawing.Point(14, 38);
+            this.btnAgregarProducto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregarProducto.Name = "btnAgregarProducto";
-            this.btnAgregarProducto.Size = new System.Drawing.Size(97, 32);
+            this.btnAgregarProducto.Size = new System.Drawing.Size(86, 26);
             this.btnAgregarProducto.TabIndex = 8;
             this.btnAgregarProducto.Text = "Agregar";
             this.btnAgregarProducto.UseVisualStyleBackColor = true;
@@ -79,9 +82,10 @@ namespace SistemaDeVentas.Ventanas
             // 
             // btnEditarProducto
             // 
-            this.btnEditarProducto.Location = new System.Drawing.Point(16, 100);
+            this.btnEditarProducto.Location = new System.Drawing.Point(14, 80);
+            this.btnEditarProducto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEditarProducto.Name = "btnEditarProducto";
-            this.btnEditarProducto.Size = new System.Drawing.Size(97, 32);
+            this.btnEditarProducto.Size = new System.Drawing.Size(86, 26);
             this.btnEditarProducto.TabIndex = 9;
             this.btnEditarProducto.Text = "Editar";
             this.btnEditarProducto.UseVisualStyleBackColor = true;
@@ -89,9 +93,10 @@ namespace SistemaDeVentas.Ventanas
             // 
             // btnEliminarProducto
             // 
-            this.btnEliminarProducto.Location = new System.Drawing.Point(16, 163);
+            this.btnEliminarProducto.Location = new System.Drawing.Point(14, 130);
+            this.btnEliminarProducto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
-            this.btnEliminarProducto.Size = new System.Drawing.Size(97, 32);
+            this.btnEliminarProducto.Size = new System.Drawing.Size(86, 26);
             this.btnEliminarProducto.TabIndex = 10;
             this.btnEliminarProducto.Text = "Eliminar";
             this.btnEliminarProducto.UseVisualStyleBackColor = true;
@@ -99,66 +104,70 @@ namespace SistemaDeVentas.Ventanas
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(142, 49);
+            this.txtBuscar.Location = new System.Drawing.Point(126, 39);
+            this.txtBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(186, 26);
+            this.txtBuscar.Size = new System.Drawing.Size(166, 22);
             this.txtBuscar.TabIndex = 11;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 52);
+            this.label2.Location = new System.Drawing.Point(23, 42);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 20);
+            this.label2.Size = new System.Drawing.Size(106, 17);
             this.label2.TabIndex = 12;
             this.label2.Text = "Id del producto:";
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.Location = new System.Drawing.Point(200, 71);
+            this.txtDescripcion.Location = new System.Drawing.Point(178, 57);
+            this.txtDescripcion.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtDescripcion.Multiline = true;
             this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(251, 93);
+            this.txtDescripcion.Size = new System.Drawing.Size(224, 75);
             this.txtDescripcion.TabIndex = 6;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(196, 48);
+            this.label3.Location = new System.Drawing.Point(174, 38);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 20);
+            this.label3.Size = new System.Drawing.Size(86, 17);
             this.label3.TabIndex = 4;
             this.label3.Text = "Descripción:";
             // 
             // txtAlmacen
             // 
-            this.txtAlmacen.Location = new System.Drawing.Point(18, 138);
+            this.txtAlmacen.Location = new System.Drawing.Point(16, 110);
+            this.txtAlmacen.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtAlmacen.Name = "txtAlmacen";
-            this.txtAlmacen.Size = new System.Drawing.Size(152, 26);
+            this.txtAlmacen.Size = new System.Drawing.Size(136, 22);
             this.txtAlmacen.TabIndex = 7;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(14, 115);
+            this.label4.Location = new System.Drawing.Point(12, 92);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(83, 20);
+            this.label4.Size = new System.Drawing.Size(73, 17);
             this.label4.TabIndex = 5;
             this.label4.Text = "Cantidad:*";
             // 
             // txtNombreProducto
             // 
-            this.txtNombreProducto.Location = new System.Drawing.Point(18, 71);
+            this.txtNombreProducto.Location = new System.Drawing.Point(16, 57);
+            this.txtNombreProducto.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNombreProducto.Name = "txtNombreProducto";
-            this.txtNombreProducto.Size = new System.Drawing.Size(152, 26);
+            this.txtNombreProducto.Size = new System.Drawing.Size(136, 22);
             this.txtNombreProducto.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(14, 48);
+            this.label1.Location = new System.Drawing.Point(12, 38);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 20);
+            this.label1.Size = new System.Drawing.Size(67, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre:*";
             // 
@@ -172,46 +181,53 @@ namespace SistemaDeVentas.Ventanas
             this.groupBox1.Controls.Add(this.txtNombreProducto);
             this.groupBox1.Controls.Add(this.txtAlmacen);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(47, 21);
+            this.groupBox1.Location = new System.Drawing.Point(42, 17);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(502, 269);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox1.Size = new System.Drawing.Size(446, 215);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del producto";
             // 
             // txtPrecio
             // 
-            this.txtPrecio.Location = new System.Drawing.Point(18, 208);
+            this.txtPrecio.Location = new System.Drawing.Point(16, 166);
+            this.txtPrecio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtPrecio.Name = "txtPrecio";
-            this.txtPrecio.Size = new System.Drawing.Size(152, 26);
+            this.txtPrecio.Size = new System.Drawing.Size(136, 22);
             this.txtPrecio.TabIndex = 9;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(14, 184);
+            this.label5.Location = new System.Drawing.Point(12, 147);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(63, 20);
+            this.label5.Size = new System.Drawing.Size(57, 17);
             this.label5.TabIndex = 8;
             this.label5.Text = "Precio:*";
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.btnEliminarProducto);
             this.groupBox2.Controls.Add(this.btnAgregarProducto);
             this.groupBox2.Controls.Add(this.btnEditarProducto);
-            this.groupBox2.Location = new System.Drawing.Point(574, 30);
+            this.groupBox2.Location = new System.Drawing.Point(510, 24);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(398, 212);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox2.Size = new System.Drawing.Size(354, 208);
             this.groupBox2.TabIndex = 14;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Acciones";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(334, 47);
+            this.button1.Location = new System.Drawing.Point(297, 38);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(97, 30);
+            this.button1.Size = new System.Drawing.Size(86, 24);
             this.button1.TabIndex = 11;
             this.button1.Text = "Buscar";
             this.button1.UseVisualStyleBackColor = true;
@@ -223,21 +239,34 @@ namespace SistemaDeVentas.Ventanas
             this.groupBox3.Controls.Add(this.dtgvProductos);
             this.groupBox3.Controls.Add(this.txtBuscar);
             this.groupBox3.Controls.Add(this.label2);
-            this.groupBox3.Location = new System.Drawing.Point(47, 296);
+            this.groupBox3.Location = new System.Drawing.Point(42, 237);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(906, 387);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox3.Size = new System.Drawing.Size(805, 310);
             this.groupBox3.TabIndex = 15;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Registros";
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(17, 166);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(82, 23);
+            this.button2.TabIndex = 11;
+            this.button2.Text = "Salir";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Productos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1002, 707);
+            this.ClientSize = new System.Drawing.Size(891, 566);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Productos";
@@ -273,5 +302,6 @@ namespace SistemaDeVentas.Ventanas
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button2;
     }
 }

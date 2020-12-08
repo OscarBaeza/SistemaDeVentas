@@ -40,14 +40,20 @@ namespace SistemaDeVentas.Ventanas
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-           
-            dataGridView1.DataSource = Funciones.mostrarProductoS("Pantalon");
+            dataGridView1.DataSource = Funciones.mostrarProductoS(comboProductos.SelectedItem.ToString());
 
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Login log = new Login();
+            log.Show();
+            this.Hide();
         }
     }
 }
