@@ -27,7 +27,7 @@ namespace SistemaDeVentas.Ventanas
             {
 
                 //Aqui aplicamos un comando SQL que nos permitira comparar los datos ingresados por el usuario con la base de datos
-                MySqlCommand cmd = new MySqlCommand("SELECT NOMBRE, ENCARGADO FROM EMPLEADOS WHERE EMAIL = @usuario AND PASSWORD = @pas", Conexion.obtenerConexion());
+                MySqlCommand cmd = new MySqlCommand("SELECT IDEMPLEADO, NOMBRE, ENCARGADO FROM EMPLEADOS WHERE EMAIL = @usuario AND PASSWORD = @pas", Conexion.obtenerConexion());
                 cmd.Parameters.AddWithValue("usuario", usuario);
                 cmd.Parameters.AddWithValue("pas", contrasena);
                 MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
@@ -37,15 +37,18 @@ namespace SistemaDeVentas.Ventanas
                 
                 sda.Fill(dt);
 
-                String encargado = dt.Rows[0][1].ToString();
                 
+                String idempleado = dt.Rows[0][0].ToString();
+
+                String encargado = dt.Rows[0][2].ToString();
+
                 //En caso de que la DataTable no esté vacia, significará que tuvimos coincidencia en ambos datos de usuario y contrasena
                 if (dt.Rows.Count == 1)
                 {
                     //Mandamos un mensaje de bienvenida concatenado al nombre de usuario que ingreso
                     MessageBox.Show("Bienvenido " + usuario);
                     
-                    Menu fm = new Menu(encargado);
+                    Menu fm = new Menu(encargado,idempleado);
                     fm.Show();
                     Login log = new Login();
                     log.Close();
@@ -78,6 +81,8 @@ namespace SistemaDeVentas.Ventanas
         private void btnentrar_Click(object sender, EventArgs e)
         {
             logear(txtusername.Text, txtpassword.Text);
+            Login LOG = new Login();
+            LOG.Hide();
         }
 
         private void Login_Load(object sender, EventArgs e)

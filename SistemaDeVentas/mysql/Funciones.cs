@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -111,8 +112,11 @@ namespace SistemaDeVentas.mysql
             //Utilizamos el siguiente comando SQL para agregarlo a la base de datos
             MySqlCommand comando = new MySqlCommand(String.Format("INSERT INTO EMPLEADOS(NOMBRE, APELLIDOPATERNO, " +
                 "APELLIDOMATERNO, EMAIL, PASSWORD, ENCARGADO, FECHANACIMIENTO, DIRECCION, TELEFONO)values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')", 
-                add.Nombre, add.ApellidoPaterno, add.ApellidoMaterno, add.Email, add.password, add.Encargado, add.Date, add.Direccion, add.Telefono), Conexion.obtenerConexion());
-            retorno = comando.ExecuteNonQuery();
+                add.Nombre, add.ApellidoPaterno, add.ApellidoMaterno, add.Email, "HEX(SHA1("+add.password+"))", add.Encargado, add.Date, add.Direccion, add.Telefono), Conexion.obtenerConexion());
+            MySqlCommand comando2 = new MySqlCommand("INSERT INTO EMPLEADOS(NOMBRE, APELLIDOPATERNO, " +
+                "APELLIDOMATERNO, EMAIL, PASSWORD, ENCARGADO, FECHANACIMIENTO, DIRECCION, TELEFONO)VALUES('"+add.Nombre+"', '"+add.ApellidoPaterno+"','"+add.ApellidoMaterno
+                +"','"+add.Email+"','HEX(SHA1("+add.password+"))','"+add.Encargado+"','"+add.Date+"','"+add.Direccion+"','"+add.Telefono+"')",Conexion.obtenerConexion());
+            retorno = comando2.ExecuteNonQuery();
             return retorno;
         }
 
@@ -265,27 +269,120 @@ namespace SistemaDeVentas.mysql
 
         //VENTAS
 
-        public static List<ProductoDAO> mostrarProductoS(String nombre)
+        public static List<ProductoDAO> mostrarProductoVenta2(String NOMBRE)
         {
             //Esté metodo nos regresa una lista con los datos que mostraremos 
             List<ProductoDAO> lista = new List<ProductoDAO>();
             //Esté será el comando que utilizaremos para obtener los datos
-            MySqlCommand comando = new MySqlCommand(String.Format("SELECT IDPRODUCTO, NOMBRE, DESCRIPCION, PRECIO FROM PRODUCTOS WHERE NOMBRE='{0}'",nombre), Conexion.obtenerConexion());
+            MySqlCommand comando = new MySqlCommand(String.Format("SELECT IDPRODUCTO, NOMBRE, DESCRIPCION, PRECIO FROM PRODUCTOS WHERE NOMBRE = '{0}'", NOMBRE), Conexion.obtenerConexion());
             MySqlDataReader reader = comando.ExecuteReader();
             //Con esté ciclo estaremos creando objetos para despues agregarlos a la lista y mostrarlos
-            
+            ProductoDAO c = new ProductoDAO();
             while (reader.Read())
             {
-                ProductoDAO c = new ProductoDAO();
+                
                 c.codigo = reader.GetInt32(0);
                 c.nombre = reader.GetString(1);
                 c.descripcion = reader.GetString(2);
+              
                 c.precio = reader.GetDouble(3);
                 lista.Add(c);
             }
-
             return lista;
         }
+
+
+
+
+        public static DataTable CargarCombo()
+        {
+            MySqlDataAdapter da = new MySqlDataAdapter("CARGARPRODUCTO", Conexion.obtenerConexion());
+            da.SelectCommand.CommandType = CommandType.StoredProcedure;
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            return dt;
+        }
+
+
+        //Ventas
+        public static int AgregarVenta(VentaDAO add)
+        {
+            //Creamos una variable llamada retorno que será la que nos indicara si se agrego a la base de datos
+            int retorno = 0;
+            //Utilizamos el siguiente comando SQL para agregarlo a la base de datos
+            MySqlCommand comando = new MySqlCommand(String.Format("INSERT INTO VENTAS(IDVENTAS,IDCLIENTE, IDEMPLEADO, " +
+                "FECHAVENTA, TOTALVENTA)values('{0}','{1}','{2}','{3}','{4}')",add.idventa, add.idcliente, add.idempleado, add.fechaventa, add.totalventa), Conexion.obtenerConexion());
+            retorno = comando.ExecuteNonQuery();
+            return retorno;
+        }
+
+
+        public static List<ClienteDAO> mostrarCliente2(String name)
+        {
+            //Esté metodo nos regresa una lista con los datos que mostraremos 
+            List<ClienteDAO> lista = new List<ClienteDAO>();
+            //Esté será el comando que utilizaremos para obtener los datos
+            MySqlCommand comando = new MySqlCommand(String.Format("SELECT * FROM CLIENTES WHERE NOMBRE='{0}'",name), Conexion.obtenerConexion());
+            MySqlDataReader reader = comando.ExecuteReader();
+            //Con esté ciclo estaremos creando objetos para despues agregarlos a la lista y mostrarlos
+
+            while (reader.Read())
+            {
+                ClienteDAO c = new ClienteDAO();
+                c.IdCliente = reader.GetInt32(0);
+                c.Nombre = reader.GetString(1);
+                c.ApellidoPaterno = reader.GetString(2);
+                c.ApellidoMaterno = reader.GetString(3);
+                c.Direccion = reader.GetString(4);
+                c.Email = reader.GetString(5);
+                c.Telefono = reader.GetString(6);
+
+                lista.Add(c);
+            }
+            return lista;
+        }
+
+        //DETALLES DE VENTA
+        public static int AgregarDetalle(DetallesDAO add)
+        {
+            //Creamos una variable llamada retorno que será la que nos indicara si se agrego a la base de datos
+            int retorno = 0;
+            //Utilizamos el siguiente comando SQL para agregarlo a la base de datos
+            MySqlCommand comando = new MySqlCommand(String.Format("INSERT INTO DETALLEVENTA(IDVENTAS, IDPRODUCTO, " +
+                "PRECIO, CANTIDAD)values('{0}','{1}','{2}','{3}')", add.idVentas, add.idProducto, add.preio, add.cantidad), Conexion.obtenerConexion());
+            retorno = comando.ExecuteNonQuery();
+            return retorno;
+        }
+
+
+        public static int Venta() {
+
+            //Aqui aplicamos un comando SQL que nos permitira comparar los datos ingresados por el usuario con la base de datos
+            MySqlCommand cmd = new MySqlCommand("SELECT NUMERO FROM IDE WHERE ID = @ide ", Conexion.obtenerConexion());
+            cmd.Parameters.AddWithValue("ide", 1);
+            
+            MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
+            //Aqui llenamos un DataTable con la informacion que nos devolvio el comando anterior
+
+            DataTable dt = new DataTable();
+
+            sda.Fill(dt);
+
+            int idempleado = Convert.ToInt32( dt.Rows[0][0].ToString());
+            return idempleado;
+        }
+
+        public static int Editaride(int Idventa)
+        {
+            //Comando SQL que editara los datos que le mandemos al registro de la base de datos
+            MySqlCommand comando = new MySqlCommand(String.Format("UPDATE IDE SET NUMERO='{0}' WHERE ID=1;",Idventa), Conexion.obtenerConexion());
+            //La variable editado será retornada y nos ayudará a saber si se actualizarón los datos de la base de datos
+            int editado = comando.ExecuteNonQuery();
+            return editado;
+        }
+
+
+
 
 
     }
