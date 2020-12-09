@@ -93,8 +93,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DAOS\ClienteDAO.cs" />
+    <Compile Include="DAOS\DetallesDAO.cs" />
     <Compile Include="DAOS\EmpleadosDAO.cs" />
     <Compile Include="DAOS\ProductoDAO.cs" />
+    <Compile Include="DAOS\VentaDAO.cs" />
     <Compile Include="mysql\Conexion.cs" />
     <Compile Include="mysql\Funciones.cs" />
     <Compile Include="Program.cs" />

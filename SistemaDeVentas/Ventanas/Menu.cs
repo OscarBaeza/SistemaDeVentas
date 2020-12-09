@@ -12,10 +12,11 @@ namespace SistemaDeVentas.Ventanas
 {
     public partial class Menu : Form
     {
-        public Menu(String n)
+        public Menu(String n,String idempleado)
         {
             InitializeComponent();
             String encargado = n;
+            id = idempleado;
             if (!n.Equals("True")) {
                 btnClientes.Enabled = false;
                 btnEmpleados.Enabled = false;
@@ -24,7 +25,7 @@ namespace SistemaDeVentas.Ventanas
             }
             
         }
-
+        String id;
         private void Menu_Load(object sender, EventArgs e)
         {
 
@@ -46,7 +47,7 @@ namespace SistemaDeVentas.Ventanas
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-            Ventas ven = new Ventas();
+            Ventas ven = new Ventas(id);
             ven.Show();
             this.Hide();
 

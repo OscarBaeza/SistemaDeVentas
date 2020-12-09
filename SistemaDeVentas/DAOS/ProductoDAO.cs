@@ -15,7 +15,7 @@ namespace SistemaDeVentas.DAOS
             public int almacen { get; set; }
             public double precio { get; set; }
 
-            public ProductoDAO()
+            public ProductoDAO(object toString)
             {
 
             }
@@ -36,6 +36,10 @@ namespace SistemaDeVentas.DAOS
                 this.almacen = almacen;
                 this.precio = precio;
             }
+
+        public ProductoDAO()
+        {
         }
+    }
     
 }
