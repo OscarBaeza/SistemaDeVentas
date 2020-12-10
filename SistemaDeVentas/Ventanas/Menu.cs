@@ -12,12 +12,14 @@ namespace SistemaDeVentas.Ventanas
 {
     public partial class Menu : Form
     {
+        String encargado;
+        String id;
         public Menu(String n,String idempleado)
         {
             InitializeComponent();
-            String encargado = n;
-            id = idempleado;
-            if (!n.Equals("True")) {
+             encargado = n;
+             id = idempleado;
+            if (!encargado.Equals("True")) {
                 btnClientes.Enabled = false;
                 btnEmpleados.Enabled = false;
                 btnProductos.Enabled = false;
@@ -25,7 +27,7 @@ namespace SistemaDeVentas.Ventanas
             }
             
         }
-        String id;
+        
         private void Menu_Load(object sender, EventArgs e)
         {
 
@@ -33,21 +35,20 @@ namespace SistemaDeVentas.Ventanas
 
         private void btnEmpleados_Click(object sender, EventArgs e)
         {
-            Empleados fm = new Empleados();
+            Empleados fm = new Empleados(encargado,id);
             this.Hide();
             fm.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Login log = new Login();
-            log.Show();
-            this.Hide();
+            
+            this.Close();
         }
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
-            Ventas ven = new Ventas(id);
+            Ventas ven = new Ventas(encargado,id);
             ven.Show();
             this.Hide();
 
@@ -55,15 +56,22 @@ namespace SistemaDeVentas.Ventanas
 
         private void btnProductos_Click(object sender, EventArgs e)
         {
-            Productos prod = new Productos();
+            Productos prod = new Productos(encargado,id);
             prod.Show();
             this.Hide();
         }
 
         private void btnClientes_Click(object sender, EventArgs e)
         {
-            Clientes cl = new Clientes();
+            Clientes cl = new Clientes(encargado,id);
             cl.Show();
+            this.Hide();
+        }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            Reportes r = new Reportes(encargado,id);
+            r.Show();
             this.Hide();
         }
     }

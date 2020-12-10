@@ -13,7 +13,7 @@ namespace SistemaDeVentas.DAOS
         public String Nombre { get; set; }
         public String ApellidoPaterno { get; set; }
         public String ApellidoMaterno { get; set; }
-        public String Email { get; set; }
+        public String Usuario { get; set; }
         public String password { get; set; }
         public int Encargado { get; set; }
         public String Date { get; set; }
@@ -25,7 +25,7 @@ namespace SistemaDeVentas.DAOS
             this.Nombre = Nombre;
             this.ApellidoPaterno = ApellidoPaterno;
             this.ApellidoMaterno = ApellidoMaterno;
-            this.Email = Email;
+            this.Usuario = Email;
             this.password = password;
             this.Encargado = Encargado;
             this.Date = Date;
@@ -40,7 +40,7 @@ namespace SistemaDeVentas.DAOS
             this.Nombre = Nombre;
             this.ApellidoPaterno = ApellidoPaterno;
             this.ApellidoMaterno = ApellidoMaterno;
-            this.Email = Email;
+            this.Usuario = Email;
             this.password = password;
             this.Encargado = Encargado;
             this.Date = Date;

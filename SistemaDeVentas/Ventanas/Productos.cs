@@ -16,8 +16,12 @@ namespace SistemaDeVentas.Ventanas
 {
     public partial class Productos : Form
     {
-        public Productos()
+        String ene;
+        String id;
+        public Productos(String n, String idempleado)
         {
+            ene = n;
+            id = idempleado;
             InitializeComponent();
             this.CenterToScreen();
         }
@@ -231,7 +235,7 @@ namespace SistemaDeVentas.Ventanas
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Login log = new Login();
+            Menu log = new Menu(ene,id);
             log.Show();
             this.Hide();
         }

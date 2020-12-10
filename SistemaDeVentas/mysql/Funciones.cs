@@ -105,6 +105,26 @@ namespace SistemaDeVentas.mysql
 
         //Funciones de empleados
 
+        public static String ObtenerUsuario(String n, String a1, String a2) {
+          
+
+                //Aqui aplicamos un comando SQL que nos permitira comparar los datos ingresados por el usuario con la base de datos
+                MySqlCommand cmd = new MySqlCommand("SELECT getUsuario(@nombre,@apellido1,@apellido2) ", Conexion.obtenerConexion());
+                cmd.Parameters.AddWithValue("nombre", n);
+                cmd.Parameters.AddWithValue("apellido1", a1);
+                cmd.Parameters.AddWithValue("apellido2", a2);
+                MySqlDataAdapter sda = new MySqlDataAdapter(cmd);
+                //Aqui llenamos un DataTable con la informacion que nos devolvio el comando anterior
+
+                DataTable dt = new DataTable();
+
+                sda.Fill(dt);
+
+                String usuario = Convert.ToString(dt.Rows[0][0].ToString());
+                return usuario;
+            
+        }
+
         public static int AgregarEmpleado(EmpleadosDAO add)
         {
             //Creamos una variable llamada retorno que será la que nos indicara si se agrego a la base de datos
@@ -112,10 +132,10 @@ namespace SistemaDeVentas.mysql
             //Utilizamos el siguiente comando SQL para agregarlo a la base de datos
             MySqlCommand comando = new MySqlCommand(String.Format("INSERT INTO EMPLEADOS(NOMBRE, APELLIDOPATERNO, " +
                 "APELLIDOMATERNO, EMAIL, PASSWORD, ENCARGADO, FECHANACIMIENTO, DIRECCION, TELEFONO)values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')", 
-                add.Nombre, add.ApellidoPaterno, add.ApellidoMaterno, add.Email, "HEX(SHA1("+add.password+"))", add.Encargado, add.Date, add.Direccion, add.Telefono), Conexion.obtenerConexion());
-            MySqlCommand comando2 = new MySqlCommand("INSERT INTO EMPLEADOS(NOMBRE, APELLIDOPATERNO, " +
-                "APELLIDOMATERNO, EMAIL, PASSWORD, ENCARGADO, FECHANACIMIENTO, DIRECCION, TELEFONO)VALUES('"+add.Nombre+"', '"+add.ApellidoPaterno+"','"+add.ApellidoMaterno
-                +"','"+add.Email+"','HEX(SHA1("+add.password+"))','"+add.Encargado+"','"+add.Date+"','"+add.Direccion+"','"+add.Telefono+"')",Conexion.obtenerConexion());
+                add.Nombre, add.ApellidoPaterno, add.ApellidoMaterno, add.Usuario, "SHA1("+add.password+")", add.Encargado, add.Date, add.Direccion, add.Telefono), Conexion.obtenerConexion());
+            MySqlCommand comando2 = new MySqlCommand("INSERT INTO EMPLEADOS (NOMBRE, APELLIDOPATERNO, APELLIDOMATERNO, USUARIO, PASSWORD, ENCARGADO, FECHANACIMIENTO, DIRECCION, TELEFONO) " +
+                "VALUES('" + add.Nombre + "','" + add.ApellidoPaterno + "','" + add.ApellidoMaterno + "','" + add.Usuario + "',SHA1('" + add.password + "'),'" + add.Encargado + "'," +
+                "'" + add.Date + "','" + add.Direccion + "','" + add.Telefono + "')", Conexion.obtenerConexion()); ;
             retorno = comando2.ExecuteNonQuery();
             return retorno;
         }
@@ -136,8 +156,8 @@ namespace SistemaDeVentas.mysql
                 c.Nombre = reader.GetString(1);
                 c.ApellidoPaterno = reader.GetString(2);
                 c.ApellidoMaterno = reader.GetString(3);
-                c.Email = reader.GetString(4);
-                c.password = reader.GetString(5);
+                c.Usuario = reader.GetString(4);
+               // c.password = reader.GetString(5);
                 c.Encargado = reader.GetInt32(6);
                 c.Date = reader.GetString(7);
                 c.Direccion = reader.GetString(8);
@@ -160,7 +180,7 @@ namespace SistemaDeVentas.mysql
                 c.Nombre = reader.GetString(1);
                 c.ApellidoPaterno = reader.GetString(2);
                 c.ApellidoMaterno = reader.GetString(3);
-                c.Email = reader.GetString(4);
+                c.Usuario = reader.GetString(4);
                 c.password = reader.GetString(5);
                 c.Encargado = reader.GetInt32(6);
                 c.Date = reader.GetString(7);
@@ -173,7 +193,7 @@ namespace SistemaDeVentas.mysql
         public static int EditarEmpleados(int IdEmpleado, String Nombre, String ApellidoPaterno, String ApellidoMaterno, String Email, String password, int Encargado, String Date, String Direccion, String Telefono)
         {
             //Comando SQL que editara los datos que le mandemos al registro de la base de datos
-            MySqlCommand comando = new MySqlCommand(String.Format("UPDATE EMPLEADOS SET NOMBRE='{0}', APELLIDOPATERNO='{1}', APELLIDOMATERNO='{2}', EMAIL='{3}',PASSWORD='{4}',ENCARGADO='{5}',DIRECCION='{6}',TELEFONO='{7}' WHERE IDEMPLEADO='{8}';", 
+            MySqlCommand comando = new MySqlCommand(String.Format("UPDATE EMPLEADOS SET NOMBRE='{0}', APELLIDOPATERNO='{1}', APELLIDOMATERNO='{2}', USUARIO='{3}',PASSWORD='{4}',ENCARGADO='{5}',DIRECCION='{6}',TELEFONO='{7}' WHERE IDEMPLEADO='{8}';", 
                 Nombre, ApellidoPaterno, ApellidoMaterno, Email, password, Encargado,Direccion, Telefono, IdEmpleado), Conexion.obtenerConexion());
             //La variable editado será retornada y nos ayudará a saber si se actualizarón los datos de la base de datos
             int editado = comando.ExecuteNonQuery();
@@ -381,6 +401,104 @@ namespace SistemaDeVentas.mysql
             return editado;
         }
 
+        //Reportes
+
+
+        public static DataTable GenerarReporte(int anio, int mes)
+        {
+            //Esté metodo nos regresa una lista con los datos que mostraremos 
+           
+            //Esté será el comando que utilizaremos para obtener los datos
+            MySqlCommand comando = new MySqlCommand(String.Format("CALL REPORTE1({0},{1})",anio,mes), Conexion.obtenerConexion());
+            MySqlDataReader reader = comando.ExecuteReader();
+            //Con esté ciclo estaremos creando objetos para despues agregarlos a la lista y mostrarlos
+            DataTable dt = new DataTable();
+            dt.Columns.Add("IDEMPLEADO");
+            dt.Columns.Add("NOMBRE");
+            dt.Columns.Add("USUARIO");
+            dt.Columns.Add("VENTAS");
+            dt.Columns.Add("MONTO");
+
+            while (reader.Read())
+            {
+                dt.Rows.Add(reader.GetString(0),reader.GetString(1),reader.GetString(2), reader.GetString(3), reader.GetString(4));
+            }
+
+            
+            return dt;
+        }
+
+        public static DataTable GenerarReporte2(String fecha1, String fecha2)
+        {
+            //Esté metodo nos regresa una lista con los datos que mostraremos 
+
+            //Esté será el comando que utilizaremos para obtener los datos
+            MySqlCommand comando = new MySqlCommand(String.Format("CALL REPORTE2('{0}','{1}')", fecha1, fecha2), Conexion.obtenerConexion());
+            MySqlDataReader reader = comando.ExecuteReader();
+            //Con esté ciclo estaremos creando objetos para despues agregarlos a la lista y mostrarlos
+            DataTable dt = new DataTable();
+            dt.Columns.Add("IDVENTAS");
+            dt.Columns.Add("FECHA");
+            dt.Columns.Add("TOTAL");
+            dt.Columns.Add("EMPLEADO");
+           
+
+            while (reader.Read())
+            {
+                dt.Rows.Add(reader.GetString(0), reader.GetString(1), reader.GetString(2), reader.GetString(3));
+            }
+
+
+            return dt;
+        }
+
+        public static int Transaccion(int cantidad,int id) {
+
+            
+          
+
+
+            
+
+            MySqlCommand comando2 = new MySqlCommand(String.Format("UPDATE PRODUCTOS SET ALMACEN = ALMACEN - {0} WHERE IDPRODUCTO = {1}",cantidad,id), Conexion.obtenerConexion());
+
+            int n  = comando2.ExecuteNonQuery();
+
+            return n;
+        }
+
+        public static int StartTransaccion()
+        {
+            String tran = "START TRANSACTION";
+
+            MySqlCommand comando2 = new MySqlCommand(String.Format(tran), Conexion.obtenerConexion());
+
+            int n = comando2.ExecuteNonQuery();
+
+            return n;
+        }
+
+        public static int CommitTransaccion()
+        {
+            String tran = "COMMIT";
+
+            MySqlCommand comando2 = new MySqlCommand(String.Format(tran), Conexion.obtenerConexion());
+
+            int n = comando2.ExecuteNonQuery();
+
+            return n;
+        }
+
+        public static int RollBackTransaccion()
+        {
+            String tran = "ROLLBACK";
+
+            MySqlCommand comando2 = new MySqlCommand(String.Format(tran), Conexion.obtenerConexion());
+
+            int n = comando2.ExecuteNonQuery();
+
+            return n;
+        }
 
 
 
