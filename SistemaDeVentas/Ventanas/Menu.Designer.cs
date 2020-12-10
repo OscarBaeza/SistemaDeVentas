@@ -39,10 +39,10 @@ namespace SistemaDeVentas.Ventanas
             // 
             // btnEmpleados
             // 
-            this.btnEmpleados.Location = new System.Drawing.Point(44, 40);
+            this.btnEmpleados.Location = new System.Drawing.Point(50, 50);
             this.btnEmpleados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEmpleados.Name = "btnEmpleados";
-            this.btnEmpleados.Size = new System.Drawing.Size(113, 42);
+            this.btnEmpleados.Size = new System.Drawing.Size(127, 52);
             this.btnEmpleados.TabIndex = 0;
             this.btnEmpleados.Text = "Empleados";
             this.btnEmpleados.UseVisualStyleBackColor = true;
@@ -50,10 +50,10 @@ namespace SistemaDeVentas.Ventanas
             // 
             // btnProductos
             // 
-            this.btnProductos.Location = new System.Drawing.Point(44, 114);
+            this.btnProductos.Location = new System.Drawing.Point(50, 142);
             this.btnProductos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnProductos.Name = "btnProductos";
-            this.btnProductos.Size = new System.Drawing.Size(113, 42);
+            this.btnProductos.Size = new System.Drawing.Size(127, 52);
             this.btnProductos.TabIndex = 1;
             this.btnProductos.Text = "Productos";
             this.btnProductos.UseVisualStyleBackColor = true;
@@ -61,10 +61,10 @@ namespace SistemaDeVentas.Ventanas
             // 
             // btnClientes
             // 
-            this.btnClientes.Location = new System.Drawing.Point(44, 191);
+            this.btnClientes.Location = new System.Drawing.Point(50, 239);
             this.btnClientes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(113, 42);
+            this.btnClientes.Size = new System.Drawing.Size(127, 52);
             this.btnClientes.TabIndex = 2;
             this.btnClientes.Text = "Clientes";
             this.btnClientes.UseVisualStyleBackColor = true;
@@ -72,10 +72,10 @@ namespace SistemaDeVentas.Ventanas
             // 
             // btnVentas
             // 
-            this.btnVentas.Location = new System.Drawing.Point(193, 40);
+            this.btnVentas.Location = new System.Drawing.Point(217, 50);
             this.btnVentas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnVentas.Name = "btnVentas";
-            this.btnVentas.Size = new System.Drawing.Size(113, 42);
+            this.btnVentas.Size = new System.Drawing.Size(127, 52);
             this.btnVentas.TabIndex = 3;
             this.btnVentas.Text = "Ventas";
             this.btnVentas.UseVisualStyleBackColor = true;
@@ -83,19 +83,21 @@ namespace SistemaDeVentas.Ventanas
             // 
             // btnReportes
             // 
-            this.btnReportes.Location = new System.Drawing.Point(193, 114);
+            this.btnReportes.Location = new System.Drawing.Point(217, 142);
             this.btnReportes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(113, 42);
+            this.btnReportes.Size = new System.Drawing.Size(127, 52);
             this.btnReportes.TabIndex = 4;
             this.btnReportes.Text = "Reportes";
             this.btnReportes.UseVisualStyleBackColor = true;
+            this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(193, 193);
+            this.button1.Location = new System.Drawing.Point(217, 241);
+            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 39);
+            this.button1.Size = new System.Drawing.Size(126, 49);
             this.button1.TabIndex = 5;
             this.button1.Text = "Salir";
             this.button1.UseVisualStyleBackColor = true;
@@ -103,9 +105,9 @@ namespace SistemaDeVentas.Ventanas
             // 
             // Menu
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(369, 342);
+            this.ClientSize = new System.Drawing.Size(415, 428);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnReportes);
             this.Controls.Add(this.btnVentas);
@@ -114,6 +116,7 @@ namespace SistemaDeVentas.Ventanas
             this.Controls.Add(this.btnEmpleados);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Menu";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.ResumeLayout(false);

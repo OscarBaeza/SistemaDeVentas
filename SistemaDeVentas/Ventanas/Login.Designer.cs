@@ -38,16 +38,16 @@ namespace SistemaDeVentas.Ventanas
             this.panel2 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnregistro = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtusername
             // 
+            this.txtusername.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtusername.Location = new System.Drawing.Point(232, 182);
             this.txtusername.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtusername.Name = "txtusername";
-            this.txtusername.Size = new System.Drawing.Size(282, 26);
+            this.txtusername.Size = new System.Drawing.Size(282, 39);
             this.txtusername.TabIndex = 0;
             // 
             // label1
@@ -76,10 +76,11 @@ namespace SistemaDeVentas.Ventanas
             // 
             // txtpassword
             // 
+            this.txtpassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtpassword.Location = new System.Drawing.Point(231, 274);
             this.txtpassword.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtpassword.Name = "txtpassword";
-            this.txtpassword.Size = new System.Drawing.Size(283, 26);
+            this.txtpassword.Size = new System.Drawing.Size(283, 39);
             this.txtpassword.TabIndex = 3;
             // 
             // label2
@@ -137,26 +138,12 @@ namespace SistemaDeVentas.Ventanas
             this.label3.TabIndex = 7;
             this.label3.Text = "SISTEMA DE VENTAS";
             // 
-            // btnregistro
-            // 
-            this.btnregistro.BackColor = System.Drawing.Color.Yellow;
-            this.btnregistro.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnregistro.Location = new System.Drawing.Point(33, 483);
-            this.btnregistro.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnregistro.Name = "btnregistro";
-            this.btnregistro.Size = new System.Drawing.Size(465, 83);
-            this.btnregistro.TabIndex = 6;
-            this.btnregistro.Text = "Registrate";
-            this.btnregistro.UseVisualStyleBackColor = false;
-            this.btnregistro.Click += new System.EventHandler(this.btnregistro_Click);
-            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.ClientSize = new System.Drawing.Size(534, 618);
-            this.Controls.Add(this.btnregistro);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtpassword);
@@ -165,6 +152,7 @@ namespace SistemaDeVentas.Ventanas
             this.Controls.Add(this.txtusername);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.Load += new System.EventHandler(this.Login_Load);
             this.panel1.ResumeLayout(false);
@@ -183,7 +171,6 @@ namespace SistemaDeVentas.Ventanas
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnregistro;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label4;
     }

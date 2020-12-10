@@ -1,4 +1,5 @@
-﻿using SistemaDeVentas.DAOS;
+﻿using MySql.Data.MySqlClient;
+using SistemaDeVentas.DAOS;
 using SistemaDeVentas.mysql;
 using System;
 using System.Collections.Generic;
@@ -15,11 +16,14 @@ namespace SistemaDeVentas.Ventanas
     public partial class Ventas : Form
     {
         String idem;
-        public Ventas(String idempleado)
+        String ene;
+        public Ventas(String n, String idempleado)
         {
+            ene = n;
             InitializeComponent();
             btnConfirmar.Enabled = false;
             idem = idempleado;
+           // EnumerableExecutor = n;
             textBox1.Text = "0";
             lblTotal.Text = "0";
             List<ProductoDAO> lista = new List<ProductoDAO>();
@@ -110,7 +114,7 @@ namespace SistemaDeVentas.Ventanas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Login log = new Login();
+            Menu log = new Menu(ene,idem);
             log.Show();
             this.Hide();
         }
@@ -118,49 +122,72 @@ namespace SistemaDeVentas.Ventanas
         
         private void btnConfirmar_Click(object sender, EventArgs e)
         {
-            VentaDAO venta = new VentaDAO();
-            ClienteDAO cliente = new ClienteDAO();
-            cliente = Funciones.mostrarCliente2(cbmClientes.SelectedItem.ToString()).ElementAt(0);
 
-            DateTime today = DateTime.UtcNow.Date;
-            MessageBox.Show(idem);
-            venta.idventa = idVenta;
-            venta.idempleado = Convert.ToInt32(idem);
-            venta.idcliente = cliente.IdCliente;
-            venta.fechaventa = today.ToString("yyyy-MM-dd");
-            venta.totalventa = Convert.ToDouble(lblTotal.Text);
+            int resultado = -1;
 
-            
-
-
-
-            int retorno = Funciones.AgregarVenta(venta);
-           
-            if (retorno > 0)
+            try
             {
-                //Si se agrego a la base de datos nos mandara un mensaje y despues se limpiaran los campos usados
-                MessageBox.Show("venta agregado con éxito");
-                dataGridView1.Rows.Clear();
-                btnConfirmar.Enabled = false;
-                lblTotal.Text = "0";
+                VentaDAO venta = new VentaDAO();
+                ClienteDAO cliente = new ClienteDAO();
+                cliente = Funciones.mostrarCliente2(cbmClientes.SelectedItem.ToString()).ElementAt(0);
 
-                
-                for (int i=0;i<listaVentas.Count;i++) {
-                    DetallesDAO detalle = new DetallesDAO(venta.idventa, listaVentas.ElementAt(i).codigo, listaVentas.ElementAt(i).precio, Convert.ToInt32(cantidades.ElementAt(i)));
-                    Funciones.AgregarDetalle(detalle);
+                DateTime today = DateTime.UtcNow.Date;
+                MessageBox.Show(idem);
+                venta.idventa = idVenta;
+                venta.idempleado = Convert.ToInt32(idem);
+                venta.idcliente = cliente.IdCliente;
+                venta.fechaventa = today.ToString("yyyy-MM-dd");
+                venta.totalventa = Convert.ToDouble(lblTotal.Text);
+
+                int retorno = Funciones.AgregarVenta(venta);
+
+                if (retorno > 0)
+                {
+                    //Si se agrego a la base de datos nos mandara un mensaje y despues se limpiaran los campos usados
+
+
+
+                    dataGridView1.Rows.Clear();
+                    btnConfirmar.Enabled = false;
+                    lblTotal.Text = "0";
+                    total = 0;
+
+
+                    for (int i = 0; i < listaVentas.Count; i++)
+                    {
+                        DetallesDAO detalle = new DetallesDAO(venta.idventa, listaVentas.ElementAt(i).codigo, listaVentas.ElementAt(i).precio, Convert.ToInt32(cantidades.ElementAt(i)));
+                        Funciones.AgregarDetalle(detalle);
+                    }
+
+                    cantidades = new List<string>();
+                    listaVentas = new List<ProductoDAO>();
+                    idVenta++;
+                    int edit = Funciones.Editaride(idVenta);
+
                 }
-
-                cantidades = new List<string>(); 
-                listaVentas = new List<ProductoDAO>();
-                idVenta++;
-                int edit = Funciones.Editaride(idVenta);
+                else
+                {
+                    //Si no se agrego mandara un mensaje 
+                    MessageBox.Show("No se generó la venta, verifique los datos");
+                }
+                resultado = Funciones.StartTransaccion();
 
             }
-            else
+            catch (MySqlException ex)
             {
-                //Si no se agrego mandara un mensaje 
-                MessageBox.Show("No se generó la venta, verifique los datos");
+                resultado = Funciones.RollBackTransaccion();
+                MessageBox.Show("Ocurrio un error en la base de datos");
             }
+            finally
+            {
+                resultado = Funciones.CommitTransaccion();
+
+            }
+            if (resultado>0) {
+                MessageBox.Show("Proceso correcto");
+            }
+
+           
         }
     }
 }

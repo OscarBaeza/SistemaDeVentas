@@ -14,8 +14,12 @@ namespace SistemaDeVentas.Ventanas
 {
     public partial class Clientes : Form
     {
-        public Clientes()
+        String ene;
+        String id;
+        public Clientes(String n, String idempleado)
         {
+            ene = n;
+            id = idempleado;
             InitializeComponent();
             dtgvClientes.DataSource = Funciones.mostrarCliente();
         }
@@ -69,7 +73,7 @@ namespace SistemaDeVentas.Ventanas
             }
             if (txtEmail.Text.Length == 0)
             {
-                errores += "-Agregue un Email\n";
+                errores += "-Agregue un Usuario\n";
 
             }
             else
@@ -147,7 +151,7 @@ namespace SistemaDeVentas.Ventanas
                                     "Apellido Paterno: " + c.ApellidoPaterno + "\n" +
                                     "Apellido Materno: " + c.ApellidoMaterno + "\n" +
                                     "Domicilo: " + c.Direccion + "\n" +
-                                    "Email: " + c.Email + "\n" +
+                                    "Usuario: " + c.Email + "\n" +
                                     "Telefono: " + c.Telefono + "\n");
                         txtBuscar.Clear();
                     }
@@ -253,9 +257,14 @@ namespace SistemaDeVentas.Ventanas
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Login log = new Login();
+            Menu log = new Menu(ene,id);
             log.Show();
             this.Hide();
+        }
+
+        private void Clientes_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
