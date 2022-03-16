@@ -14,8 +14,12 @@ namespace SistemaDeVentas.Ventanas
 {
     public partial class Empleados : Form
     {
-        public Empleados()
+        String ene;
+        String id;
+        public Empleados(String n, String idempleado)
         {
+            ene = n;
+            id = idempleado;
             InitializeComponent();
             dtgvEmpleados.DataSource = Funciones.mostrarEmpleado();
         }
@@ -59,15 +63,7 @@ namespace SistemaDeVentas.Ventanas
             {
                 cont++;
             }
-            if (txtEmail.Text.Length == 0)
-            {
-                errores += "-Agregue un Email\n";
-
-            }
-            else
-            {
-                cont++;
-            }
+           
             if (txtPassword.Text.Length == 0)
             {
                 errores += "-Agregue un Passsword\n";
@@ -110,12 +106,12 @@ namespace SistemaDeVentas.Ventanas
             }
 
 
-            if (cont == 9)
+            if (cont == 8)
             {
                 agregar.Nombre = txtNombre.Text;
                 agregar.ApellidoPaterno = txtApellidoP.Text;
                 agregar.ApellidoMaterno = txtApellidoM.Text;
-                agregar.Email = txtEmail.Text;
+                agregar.Usuario = Funciones.ObtenerUsuario(txtNombre.Text,txtApellidoP.Text,txtApellidoM.Text);
                 agregar.password = txtPassword.Text;
                 agregar.Encargado = Convert.ToInt32(txtEncargado.Text);
                 agregar.Date = txtFecha.Text;
@@ -259,7 +255,7 @@ namespace SistemaDeVentas.Ventanas
                                     "Nombre: " + c.Nombre + "\n" +
                                     "Apellido Paterno: " + c.ApellidoPaterno + "\n" +
                                     "Apellido Materno: " + c.ApellidoMaterno + "\n" +
-                                    "Email: " + c.Email + "\n" +
+                                    "Usuario: " + c.Usuario + "\n" +
                                     "Password: " + "**********" + "\n" +
                                     "Encagado: " + c.Encargado + "\n" +
                                     "Fecha de nacimiento: " + c.Date + "\n" +
@@ -299,7 +295,7 @@ namespace SistemaDeVentas.Ventanas
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            Login log = new Login();
+            Menu log = new Menu(ene,id);
             log.Show();
             this.Hide();
         }
